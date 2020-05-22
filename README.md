@@ -1,6 +1,8 @@
 # SeaCarousel
 
->如果按照文档步骤有问题，或者看不懂，那就看demo吧！！！因为文档我瞎写的
+>如果按照文档步骤有问题，或者看不懂，那就看demo的代码吧！！！因为文档我瞎写的
+
+[在线演示地址](https://codingsea.cn/seacarousel)
 
 ## Install
 ```

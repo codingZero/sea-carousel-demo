@@ -51,7 +51,7 @@
     <el-button @click="show">显示指示器</el-button>
     <el-button @click="rotation" v-if="showBtn">自动轮播</el-button>
     <p>
-      <a href="https://github.com/codingZero/sea-carousel-demo" style="margin-right: 30px" target="_blank">demo地址</a>
+      <a href="https://github.com/codingZero/sea-carousel-demo" style="margin-right: 30px" target="_blank">代码地址</a>
       <a href="https://github.com/codingZero/sea-carousel-demo/blob/master/README.md" target="_blank">文档</a>
     </p>
     <a href="https://codingsea.cn" class="home">回到首页</a>
