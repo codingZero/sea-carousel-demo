@@ -1,29 +1,56 @@
-# sea-carousel-demo
+# SeaCarousel
 
-## Project setup
+## Install
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
+npm install sea-carousel --save
 ```
 
-### Compiles and minifies for production
+## Import
 ```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
+// main.js
+import SeaCarousel from "sea-carousel"
+import "sea-carousel/lib/sea-carousel.css"
+Vue.use(SeaCarousel)
 ```
 
-### Lints and fixes files
+## Use
 ```
-npm run lint
+<sea-carousel column="3" spacing="15" arrow="always">
+    <span slot="left"><i class="el-icon-arrow-left"></i></span>
+    <span slot="right"><i class="el-icon-arrow-right"></i></span>
+    <sea-carousel-item v-for="_ in 5" :key="index">
+      <div>要展示的内容</div>
+    </sea-carousel-item>
+</sea-carousel>
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## SeaCarousel Attributes
+
+| 参数 | 说明 | 类型 | 可选值 | 默认值 |
+| :------: | :------: | :------: | :------: | :------: |
+| column | 列数 | Number | -- | 2 |
+| spacing | 列间距 | Number | -- | 16 |
+| arrow | 箭头显示方式 | String | always/hover | hover |
+
+
+## SeaCarousel Methods
+
+| 方法名 | 说明 | 参数 |
+| :------: | :------: | :------: |
+| resize | 宽度改变时调用 | -- | 
+| move | 翻页 | -1-上一页，1-下一页 | 
+
+## SeaCarousel Slot
+
+| name | 说明 |
+| :------: | :------: |
+| default | 只能是SeaCarouselItem |
+| left | 上一页按钮 |
+| right | 下一页按钮 |
+
+
+## SeaCarouselItem Slot
+
+| name | 说明 |
+| :------: | :------: |
+| default | 要展示的内容 |
