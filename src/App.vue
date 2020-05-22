@@ -4,8 +4,8 @@
     <p class="hint" v-if="showHint">差不多得了啊，那么小干什么，见不得人吗？</p>
     <div class="box" :style="{width}">
       <sea-carousel :column="column" :spacing="spacing" :arrow="arrow" ref="carousel">
-        <span slot="left" class="arrow left"><i class="el-icon-arrow-left"></i></span>
-        <span slot="right" class="arrow right"><i class="el-icon-arrow-right"></i></span>
+        <!--<span slot="left" class="arrow left"><i class="el-icon-arrow-left"></i></span>-->
+        <!--<span slot="right" class="arrow right"><i class="el-icon-arrow-right"></i></span>-->
         <sea-carousel-item v-for="(item, index) in list" :key="index" @click.native="click">
           <img class="image" :src="item.img" alt="">
           <p class="label">{{ item.label }}</p>
@@ -50,6 +50,10 @@
     </p>
     <el-button @click="show">显示指示器</el-button>
     <el-button @click="rotation" v-if="showBtn">自动轮播</el-button>
+    <p>
+      <a href="https://github.com/codingZero/sea-carousel-demo" style="margin-right: 30px" target="_blank">demo地址</a>
+      <a href="https://github.com/codingZero/sea-carousel-demo/blob/master/README.md" target="_blank">文档</a>
+    </p>
     <a href="https://codingsea.cn" class="home">回到首页</a>
   </div>
 </template>
@@ -62,7 +66,7 @@ export default {
       width: "600px",
       column: 2,
       spacing: 15,
-      arrow: "hover",
+      arrow: "always",
       showHint: false,
       showBtn: false,
       list: [{

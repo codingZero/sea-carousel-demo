@@ -1,5 +1,7 @@
 # SeaCarousel
 
+>如果按照文档步骤有问题，或者看不懂，那就看demo吧！！！因为文档我瞎写的
+
 ## Install
 ```
 npm install sea-carousel --save
