@@ -1,11 +1,10 @@
 <template>
   <div id="app">
     <p style="font-size: 40px; font-weight: bold; margin-top: 0">sea-carousel-demo</p>
-    <p class="hint" v-if="showHint">差不多得了啊，那么小干什么，见不得人吗？</p>
     <div class="box" :style="{width}">
       <sea-carousel :column="column" :spacing="spacing" :arrow="arrow" ref="carousel">
-        <!--<span slot="left" class="arrow left"><i class="el-icon-arrow-left"></i></span>-->
-        <!--<span slot="right" class="arrow right"><i class="el-icon-arrow-right"></i></span>-->
+        <span slot="left" class="arrow left"><i class="el-icon-arrow-left"></i></span>
+        <span slot="right" class="arrow right"><i class="el-icon-arrow-right"></i></span>
         <sea-carousel-item v-for="(item, index) in list" :key="index" @click.native="click">
           <img class="image" :src="item.img" alt="">
           <p class="label">{{ item.label }}</p>
@@ -14,26 +13,15 @@
     </div>
     <span style="margin-top: 10px; margin-right: 10px; display: inline-block">
       改变列数：
-      <el-select v-model="column">
-        <el-option :value="1"></el-option>
-        <el-option :value="2"></el-option>
-        <el-option :value="3"></el-option>
-        <el-option :value="4"></el-option>
-      </el-select>
+      <el-input-number :min="1" size="small" v-model="column" step-strictly></el-input-number>
     </span>
     <span>
       改变间距：
-      <el-select v-model="spacing">
-        <el-option :value="0"></el-option>
-        <el-option :value="10"></el-option>
-        <el-option :value="15"></el-option>
-        <el-option :value="20"></el-option>
-        <el-option :value="30"></el-option>
-      </el-select>
+      <el-input-number size="small" v-model="spacing" :step="5"></el-input-number>
     </span>
     <p>
       改变容器宽度：
-      <el-select v-model="width" @change="$refs.carousel.resize()">
+      <el-select size="small" v-model="width" @change="$refs.carousel.resize()">
         <el-option value="300px"></el-option>
         <el-option value="600px"></el-option>
         <el-option value="900px"></el-option>
@@ -43,13 +31,13 @@
     <p v-if="width === '100%'">改变窗口宽度试试</p>
     <p>
       箭头显示方式：
-      <el-select v-model="arrow">
-        <el-option value="always"></el-option>
-        <el-option value="hover"></el-option>
-      </el-select>
+      <el-radio-group v-model="arrow">
+        <el-radio label="always"></el-radio>
+        <el-radio label="hover"></el-radio>
+      </el-radio-group>
     </p>
-    <el-button @click="show">显示指示器</el-button>
-    <el-button @click="rotation" v-if="showBtn">自动轮播</el-button>
+    <el-button @click="show" size="small">显示指示器</el-button>
+    <el-button @click="rotation" size="small" v-if="showBtn">自动轮播</el-button>
     <p>
       <a href="https://github.com/codingZero/sea-carousel-demo" style="margin-right: 30px" target="_blank">代码地址</a>
       <a href="https://github.com/codingZero/sea-carousel-demo/blob/master/README.md" target="_blank">文档</a>
@@ -65,7 +53,7 @@ export default {
     return {
       width: "600px",
       column: 2,
-      spacing: 15,
+      spacing: -15,
       arrow: "always",
       showHint: false,
       showBtn: false,
@@ -73,45 +61,61 @@ export default {
         img: require("./assets/1.jpeg"),
         label: "这是第一张图片"
       }, {
-        img: require("./assets/2.jpeg"),
+        img: require("./assets/2.jpg"),
         label: "这是第二张图片"
       }, {
-        img: require("./assets/3.jpeg"),
+        img: require("./assets/3.jpg"),
         label: "这是第三张图片"
       }, {
         img: require("./assets/4.jpeg"),
         label: "这是第四张图片"
       }, {
-        img: require("./assets/5.jpeg"),
+        img: require("./assets/5.jpg"),
         label: "这是第五张图片"
       }, {
-        img: require("./assets/6.jpeg"),
+        img: require("./assets/6.jpg"),
         label: "这是第六张图片"
       }, {
-        img: require("./assets/7.jpeg"),
+        img: require("./assets/7.jpg"),
         label: "这是第七张图片"
       }]
     };
   },
+  watch: {
+    column(val, oldVal) {
+      if (oldVal < 5 && val === 5) {
+        this.$alert('<p class="hint">差不多得了啊，那么窄你看毛啊!</p>', '呵呵', {
+          dangerouslyUseHTMLString: true,
+          confirmButtonText: '我手残'
+        });
+      }
+    },
+    spacing(val) {
+      if (val >= 30) {
+        this.$alert('<p class="hint">离那么远干吊？脸大啊</p>', '呵呵', {
+          dangerouslyUseHTMLString: true,
+          confirmButtonText: '莫挨老子'
+        });
+      }
+    }
+  },
   created() {
     window.addEventListener("resize", () => {
-      this.$refs.carousel.resize();
-      let width = window.document.documentElement.clientWidth || window.document.body.clientWidth
-      this.showHint = width < 1000
+      if (this.width === "100%") this.$refs.carousel.resize();
     })
   },
   methods: {
     show() {
       this.showBtn = true;
-      this.$alert('<p style="font-size: 20px; color: red;">要毛指示器，这特么又不是轮播图（还不是因为我懒！)</p>', '呵呵', {
+      this.$alert('<p class="hint">要毛指示器啊，这特么又不是轮播图</p>', '呵呵', {
         dangerouslyUseHTMLString: true,
         confirmButtonText: '我错了'
       });
     },
     rotation() {
-      this.$alert('<p style="font-size: 20px; color: red;">你有毛病吧，都说了不是轮播图</p>', '呵呵', {
+      this.$alert('<p class="hint">你是呆子吧，都说了不是轮播图</p>', '呵呵', {
         dangerouslyUseHTMLString: true,
-        confirmButtonText: '我有病'
+        confirmButtonText: '我是呆子'
       });
     },
     click() {
@@ -137,15 +141,8 @@ html, body {
   color: #2c3e50;
 }
 .hint {
-  position: fixed;
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 10px;
-  font-size: 30px;
   color: red;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
+  font-size: 20px;
 }
 .box {
   margin: 0 auto;
@@ -153,15 +150,14 @@ html, body {
   height: 300px;
 }
 .box .arrow {
-  width: 60px;
-  /*height: 60px;*/
-  border-radius: 30px;
-  background-color: rgba(255, 255, 255, 0.7);
+  width: 40px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.4);
   color: white;
   font-size: 20px;
   display: inline-block;
   text-align: center;
-  line-height: 60px;
+  line-height: 40px;
 }
 .image {
   height: 100%;
