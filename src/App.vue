@@ -53,7 +53,7 @@ export default {
     return {
       width: "600px",
       column: 2,
-      spacing: -15,
+      spacing: 15,
       arrow: "always",
       showHint: false,
       showBtn: false,

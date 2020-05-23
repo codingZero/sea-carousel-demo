@@ -41,7 +41,7 @@ Vue.use(SeaCarousel)
 
 | 方法名 | 说明 | 参数 |
 | :------: | :------: | :------: |
-| resize | 总宽度改变时调用 | -- | 
+| resize | 容器宽度改变时调用 | -- | 
 | move | 翻页 | -1-上一页，1-下一页 | 
 
 ## SeaCarousel Slot
