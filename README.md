@@ -20,8 +20,10 @@ Vue.use(SeaCarousel)
 ## Use
 ```
 <sea-carousel column="3" spacing="15" arrow="always">
+    /*** 自定义左右翻页箭头，否则为默认，很丑的哦 ***/
     <span slot="left"><i class="el-icon-arrow-left"></i></span>
     <span slot="right"><i class="el-icon-arrow-right"></i></span>
+    /*** 要展示的内容需要用SeaCarouselItem组件包裹 ***/
     <sea-carousel-item v-for="(item, index) in dataList" :key="index">
       // 要展示的内容
     </sea-carousel-item>
