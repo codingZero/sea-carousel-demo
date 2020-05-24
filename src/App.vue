@@ -39,8 +39,8 @@
     <el-button @click="show" size="small">显示指示器</el-button>
     <el-button @click="rotation" size="small" v-if="showBtn">自动轮播</el-button>
     <p>
-      <a href="https://github.com/codingZero/sea-carousel-demo" style="margin-right: 30px" target="_blank">代码地址</a>
-      <a href="https://github.com/codingZero/sea-carousel-demo/blob/master/README.md" target="_blank">文档</a>
+      <a href="https://github.com/codingZero/sea-carousel-demo" target="_blank">demo&文档</a>
+      <a href="javascript:" style="margin-left: 30px;" @click="principle">实现原理</a>
     </p>
     <a href="https://codingsea.cn" class="home">回到首页</a>
   </div>
@@ -90,8 +90,8 @@ export default {
         });
       }
     },
-    spacing(val) {
-      if (val >= 30) {
+    spacing(val, oldVal) {
+      if (oldVal < val && val >= 30) {
         this.$alert('<p class="hint">离那么远干吊？脸大啊</p>', '呵呵', {
           dangerouslyUseHTMLString: true,
           confirmButtonText: '莫挨老子'
@@ -119,7 +119,13 @@ export default {
       });
     },
     click() {
-      console.log(111)
+      console.log("点我干啥?")
+    },
+    principle() {
+      this.$alert('<p style="font-size: 40px">没有，老子懒得写！</p>', '逗你玩的', {
+        dangerouslyUseHTMLString: true,
+        confirmButtonText: '我信你的邪'
+      })
     }
   }
 }
@@ -129,7 +135,7 @@ export default {
 html, body {
   padding-top: 20px;
   margin: 0;
-  min-width: 1000px;
+  min-width: 300px;
   min-height: 100%;
   box-sizing: border-box;
 }
