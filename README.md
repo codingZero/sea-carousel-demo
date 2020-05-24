@@ -22,7 +22,7 @@ Vue.use(SeaCarousel)
 <sea-carousel column="3" spacing="15" arrow="always">
     <span slot="left"><i class="el-icon-arrow-left"></i></span>
     <span slot="right"><i class="el-icon-arrow-right"></i></span>
-    <sea-carousel-item v-for="_ in 5" :key="index">
+    <sea-carousel-item v-for="(item, index) in dataList" :key="index">
       // 要展示的内容
     </sea-carousel-item>
 </sea-carousel>
@@ -42,7 +42,7 @@ Vue.use(SeaCarousel)
 | 方法名 | 说明 | 参数 |
 | :------: | :------: | :------: |
 | resize | 容器宽度改变时调用 | -- | 
-| move | 翻页 | -1-上一页，1-下一页 | 
+| turnPage | 翻页 | -1-上一页，1-下一页 | 
 
 ## SeaCarousel Slot
 

@@ -152,7 +152,7 @@ html, body {
 .box .arrow {
   width: 40px;
   border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
   font-size: 20px;
   display: inline-block;
